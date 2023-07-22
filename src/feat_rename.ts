@@ -14,25 +14,25 @@ export async function handleFeatRename() {
   if (!newName) return;
 
   const workspace = workspaceDir();
-  const moduleFullName = `modules/${module}`
+  const modulePath = `${workspace}/modules/${module}`
 
   // 重命名文件
-  const blocFilePath = `${workspace}/${moduleFullName}/lib/src/bloc/local/${oldName}.bloc.dart`;
+  const blocFilePath = `${modulePath}/lib/src/bloc/local/${oldName}.bloc.dart`;
   if (fs.existsSync(blocFilePath)) {
-    fs.renameSync(blocFilePath, `${workspace}/${moduleFullName}/lib/src/bloc/local/${newName}.bloc.dart`);
+    fs.renameSync(blocFilePath, `${modulePath}/lib/src/bloc/local/${newName}.bloc.dart`);
   }
 
-  const screenDirPath = `${workspace}/${moduleFullName}/lib/src/ui/screen/${oldName}`;
-  fs.renameSync(screenDirPath, `${workspace}/${moduleFullName}/lib/src/ui/screen/${newName}`);
-  const screenFilePath = `${workspace}/${moduleFullName}/lib/src/ui/screen/${newName}/${oldName}.screen.dart`;
-  fs.renameSync(screenFilePath, `${workspace}/${moduleFullName}/lib/src/ui/screen/${newName}/${newName}.screen.dart`);
+  const screenDirPath = `${modulePath}/lib/src/ui/screen/${oldName}`;
+  fs.renameSync(screenDirPath, `${modulePath}/lib/src/ui/screen/${newName}`);
+  const screenFilePath = `${modulePath}/lib/src/ui/screen/${newName}/${oldName}.screen.dart`;
+  fs.renameSync(screenFilePath, `${modulePath}/lib/src/ui/screen/${newName}/${newName}.screen.dart`);
 
   // 重命名引用
-  _replaceForFile(`${workspace}/${moduleFullName}/lib/src/bloc/local/${newName}.bloc.dart`, oldName, newName);
-  _replaceForFile(`${workspace}/${moduleFullName}/lib/src/ui/screen/${newName}/${newName}.screen.dart`, oldName, newName);
-  _replaceForFile(`${workspace}/${moduleFullName}/lib/src/bloc/bloc.export.dart`, oldName, newName);
-  _replaceForFile(`${workspace}/${moduleFullName}/lib/src/ui/screen/screen.export.dart`, oldName, newName);
-  _replaceForFile(`${workspace}/${moduleFullName}/lib/src/router.dart`, oldName, newName);
+  _replaceForFile(`${modulePath}/lib/src/bloc/local/${newName}.bloc.dart`, oldName, newName);
+  _replaceForFile(`${modulePath}/lib/src/ui/screen/${newName}/${newName}.screen.dart`, oldName, newName);
+  _replaceForFile(`${modulePath}/lib/src/bloc/bloc.export.dart`, oldName, newName);
+  _replaceForFile(`${modulePath}/lib/src/ui/screen/screen.export.dart`, oldName, newName);
+  _replaceForFile(`${modulePath}/lib/src/router.dart`, oldName, newName);
   _replaceForFile(`${workspace}/components/constant/lib/src/resource/constants.dart`, oldName, newName);
 }
 
