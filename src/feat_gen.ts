@@ -23,15 +23,15 @@ export async function handleFeatGen() {
   });
   if (!desc) return;
 
-  routes(module, name, desc)
-  bloc(module, name, desc)
-  exportBLoC(module, name, desc)
-  screen(module, name, desc)
-  exportScreen(module, name, desc)
-  routingList(module, name, desc)
+  _routes(module, name, desc)
+  _bloc(module, name, desc)
+  _exportBLoC(module, name, desc)
+  _screen(module, name, desc)
+  _exportScreen(module, name, desc)
+  _routingList(module, name, desc)
 }
 
-function routes(module: string, name: string, desc: string) {
+function _routes(module: string, name: string, desc: string) {
   const routesFilePath = `${workspaceDir()}/components/constant/lib/src/resource/constants.dart`;
 
   if (!fs.existsSync(routesFilePath)) {
@@ -55,7 +55,7 @@ function routes(module: string, name: string, desc: string) {
   fs.writeFileSync(routesFilePath, result);
 }
 
-function bloc(module: string, name: string, desc: string) {
+function _bloc(module: string, name: string, desc: string) {
   const blocFilePath = `${workspaceDir()}/modules/${module}/lib/src/bloc/local/${name}.bloc.dart`;
 
   if (!fs.existsSync(blocFilePath)) {
@@ -74,7 +74,7 @@ function bloc(module: string, name: string, desc: string) {
   fs.writeFileSync(blocFilePath, `${import_}${class_}${mixin_}`);
 }
 
-function exportBLoC(module: string, name: string, desc: string) {
+function _exportBLoC(module: string, name: string, desc: string) {
   const exportFilePath = `${workspaceDir()}/modules/${module}/lib/src/bloc/bloc.export.dart`;
 
   if (!fs.existsSync(exportFilePath)) {
@@ -85,7 +85,7 @@ function exportBLoC(module: string, name: string, desc: string) {
   fs.writeFileSync(exportFilePath, `export 'local/${name}.bloc.dart';\n`, { flag: 'a' });
 }
 
-function screen(module: string, name: string, desc: string) {
+function _screen(module: string, name: string, desc: string) {
   const screenFilePath = `${workspaceDir()}/modules/${module}/lib/src/ui/screen/${name}/${name}.screen.dart`;
   const pubspecFilePath = `${workspaceDir()}/pubspec.yaml`;
 
@@ -129,7 +129,7 @@ class ${camelFeatureName}Screen extends StatelessWidget {
   );
 }
 
-function exportScreen(module: string, name: string, desc: string) {
+function _exportScreen(module: string, name: string, desc: string) {
   const screenExportFilePath = `${workspaceDir()}/modules/${module}/lib/src/ui/screen/screen.export.dart`;
 
   if (!fs.existsSync(screenExportFilePath)) {
@@ -142,7 +142,7 @@ function exportScreen(module: string, name: string, desc: string) {
   });
 }
 
-function routingList(module: string, name: string, desc: string) {
+function _routingList(module: string, name: string, desc: string) {
   let routeFile = fs.readFileSync(`${workspaceDir()}/modules/${module}/lib/src/router.dart`, 'utf8');
 
   if (!routeFile) {
