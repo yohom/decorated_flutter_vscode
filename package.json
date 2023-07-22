@@ -2,7 +2,7 @@
   "name": "decorated-flutter-vscode",
   "displayName": "decorated_flutter_vscode",
   "description": "Decorated Flutter配套的脚手架",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {
     "url": "https://github.com/yohom/decorated_flutter_vscode"
   },
@@ -17,8 +17,16 @@
   "contributes": {
     "commands": [
       {
-        "command": "decorated-flutter-vscode.helloWorld",
-        "title": "Hello World"
+        "command": "decorated-flutter.feat_gen",
+        "title": "Decorated Flutter: Feat Gen(生成新Feature页面模板)"
+      },
+      {
+        "command": "decorated-flutter.feat_rename",
+        "title": "Decorated Flutter: Feat Rename(重命名Feature页面)"
+      },
+      {
+        "command": "decorated-flutter.feat_remove",
+        "title": "Decorated Flutter: Feat Remove(删除Feature页面)"
       }
     ]
   },
