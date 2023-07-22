@@ -12,6 +12,12 @@ export function modules(): string[] {
   return fs.readdirSync(`${workspace}/modules`)
 }
 
+/// 获取模块下所有的页面名称 
+export function screensOf(module: string): string[] {
+  const workspace = workspaceDir()
+  return fs.readdirSync(`${workspace}/modules/${module}/lib/src/ui/screen`)
+}
+
 /// 格式化指定路径的文件
 export async function formatFile(path: string) {
   const document = await vscode.workspace.openTextDocument(path);

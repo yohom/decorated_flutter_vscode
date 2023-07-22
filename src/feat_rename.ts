@@ -1,20 +1,48 @@
+import { pascalCase } from 'change-case';
+import * as fs from 'fs';
 import * as vscode from 'vscode';
+import { modules, screensOf, workspaceDir } from './_helper';
 
 export async function handleFeatRename() {
-  // 弹出第一个编辑框并获取参数1
-  const module = await vscode.window.showInputBox({
-    prompt: '请输入模块名称(若是单模块应用, 则跳过)',
-  });
+  const module = await vscode.window.showQuickPick(modules());
+  if (!module) return;
 
-  // 弹出第二个编辑框并获取参数2
-  const name = await vscode.window.showInputBox({
-    prompt: '请输入页面英文名称(小写+下划线模式)',
-  });
+  const oldName = await vscode.window.showQuickPick(screensOf(module));
+  if (!oldName) return;
 
-  // 弹出第三个编辑框并获取参数3
-  const desc = await vscode.window.showInputBox({
-    prompt: '请输入页面描述',
-  });
+  const newName = await vscode.window.showInputBox({ prompt: "请输入新名称(使用下划线格式)" });
+  if (!newName) return;
 
-  vscode.window.showInformationMessage("模块名称: " + module + ", 页面英文名称: " + name + ", 页面描述: " + desc);
+  const workspace = workspaceDir();
+  const moduleFullName = `modules/${module}`
+
+  // 重命名文件
+  const blocFilePath = `${workspace}/${moduleFullName}/lib/src/bloc/local/${oldName}.bloc.dart`;
+  if (fs.existsSync(blocFilePath)) {
+    fs.renameSync(blocFilePath, `${workspace}/${moduleFullName}/lib/src/bloc/local/${newName}.bloc.dart`);
+  }
+
+  const screenDirPath = `${workspace}/${moduleFullName}/lib/src/ui/screen/${oldName}`;
+  fs.renameSync(screenDirPath, `${workspace}/${moduleFullName}/lib/src/ui/screen/${newName}`);
+  const screenFilePath = `${workspace}/${moduleFullName}/lib/src/ui/screen/${newName}/${oldName}.screen.dart`;
+  fs.renameSync(screenFilePath, `${workspace}/${moduleFullName}/lib/src/ui/screen/${newName}/${newName}.screen.dart`);
+
+  // 重命名引用
+  _replaceForFile(`${workspace}/${moduleFullName}/lib/src/bloc/local/${newName}.bloc.dart`, oldName, newName);
+  _replaceForFile(`${workspace}/${moduleFullName}/lib/src/ui/screen/${newName}/${newName}.screen.dart`, oldName, newName);
+  _replaceForFile(`${workspace}/${moduleFullName}/lib/src/bloc/bloc.export.dart`, oldName, newName);
+  _replaceForFile(`${workspace}/${moduleFullName}/lib/src/ui/screen/screen.export.dart`, oldName, newName);
+  _replaceForFile(`${workspace}/${moduleFullName}/lib/src/router.dart`, oldName, newName);
+  _replaceForFile(`${workspace}/components/constant/lib/src/resource/constants.dart`, oldName, newName);
+}
+
+function _replaceForFile(filePath: string, oldName: string, newName: string) {
+  const camelOldName = pascalCase(oldName)
+  const camelNewName = pascalCase(newName)
+
+  const file = fs.readFileSync(filePath, 'utf8');
+  const newContent = file
+    .replace(RegExp(oldName, 'g'), newName)
+    .replace(RegExp(camelOldName, 'g'), camelNewName);
+  fs.writeFileSync(filePath, newContent);
 }
