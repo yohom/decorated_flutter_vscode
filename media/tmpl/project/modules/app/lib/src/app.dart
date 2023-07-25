@@ -34,36 +34,16 @@ class MyApp extends StatelessWidget {
 
     final path = redirection.path!;
     final arguments = redirection.availableArguments;
-    return null;
 
-    // if (path.startsWith('/community')) {
-    //   return CommunityRouter.instance.onGenerateRoute(redirection);
-    // } else if (path.startsWith('/user')) {
-    //   return UserRouter.instance.onGenerateRoute(redirection);
-    // } else if (path.startsWith('/game')) {
-    //   return GameRouter.instance.onGenerateRoute(redirection);
-    // } else if (path.startsWith('/index')) {
-    //   return IndexRouter.instance.onGenerateRoute(redirection);
-    // } else if (path.startsWith('/shortvideo')) {
-    //   return ShortVideoRouter.instance.onGenerateRoute(redirection);
-    // } else if (path.startsWith('/core')) {
-    //   return CoreRouter.instance.onGenerateRoute(redirection);
-    // } else {
-    //   switch (path) {
-    //     // 主页
-    //     case Routes.home:
-    //       return HomeScreen.route(arguments);
-    //     // 通用列表
-    //     case Routes.list_screen:
-    //       return ListScreen.route(arguments);
-    //     // 开屏广告
-    //     case Routes.splash_ads:
-    //       return SplashAdsScreen.route(arguments);
-    //     default:
-    //       L.w('未找到目标路由 $path, 将重定向到主页');
-    //       return HomeScreen.route(arguments);
-    //   }
-    // }
+    if (path.startsWith('/index')) {
+      return IndexRouter.instance.onGenerateRoute(redirection);
+    } else {
+      switch (path) {
+        default:
+          L.w('未找到目标路由 $path, 将重定向到主页');
+          return null;
+      }
+    }
   }
 
   RouteSettings _redirect(RouteSettings settings) {

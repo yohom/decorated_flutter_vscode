@@ -1,4 +1,0 @@
-# melos_managed_dependency_overrides: component_constant
-dependency_overrides:
-  component_constant:
-    path: ../constant

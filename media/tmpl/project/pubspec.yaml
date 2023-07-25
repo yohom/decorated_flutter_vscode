@@ -1,0 +1,35 @@
+name: my_app
+description: 我的app :)
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: "^3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  module_app:
+    path: modules/app
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_driver:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  flutter_lints: ^2.0.1
+  # 工具 生成launch icon
+  flutter_launcher_icons: ^0.9.3
+  # 工具 生成splash
+  flutter_native_splash: ^2.2.6
+  # 包管理工具
+  melos: ^3.1.0
+  # 以下为运行工具脚本需要
+  validators: 3.0.0
+  recase: 4.0.0
+  dart_style: 2.2.3
+
+flutter:
+  uses-material-design: true
