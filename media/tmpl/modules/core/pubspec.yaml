@@ -1,0 +1,25 @@
+name: module_core
+description: A new Flutter project.
+version: 0.0.1
+publish_to: "none"
+
+environment:
+  sdk: "^3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  ######################### 组件 #########################
+  component_data:
+    path: ../../components/data
+  component_ui:
+    path: ../../components/ui
+  component_vendor:
+    path: ../../components/vendor
+  ######################### 组件 #########################
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: any
