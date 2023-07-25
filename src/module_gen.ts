@@ -56,6 +56,9 @@ export async function handleModuleGen() {
     "path: ../index",
     `\n  module_${name}:\n    path: ../${name}`,
   );
+
+  // 更新依赖
+  await vscode.commands.executeCommand('pub.get');
 }
 
 /// 替换文本内容
