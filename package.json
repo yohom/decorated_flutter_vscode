@@ -3,6 +3,7 @@
   "displayName": "decorated_flutter_vscode",
   "description": "Decorated Flutter配套的脚手架",
   "version": "0.1.4",
+  "icon": "images/icon.png",
   "publisher": "decoratedflutter",
   "repository": {
     "url": "https://github.com/yohom/decorated_flutter_vscode"
