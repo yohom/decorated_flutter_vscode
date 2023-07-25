@@ -1,0 +1,12 @@
+# melos_managed_dependency_overrides: component_constant,component_data,component_ui,component_vendor,module_core
+dependency_overrides:
+  component_constant:
+    path: ../../components/constant
+  component_data:
+    path: ../../components/data
+  component_ui:
+    path: ../../components/ui
+  component_vendor:
+    path: ../../components/vendor
+  module_core:
+    path: ../core
