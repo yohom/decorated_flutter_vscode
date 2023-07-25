@@ -3,6 +3,7 @@
   "displayName": "decorated_flutter_vscode",
   "description": "Decorated Flutter配套的脚手架",
   "version": "0.1.3",
+  "publisher": "decoratedflutter",
   "repository": {
     "url": "https://github.com/yohom/decorated_flutter_vscode"
   },
@@ -27,6 +28,10 @@
       {
         "command": "decorated-flutter.feat_remove",
         "title": "Decorated Flutter: Feat Remove(删除Feature页面)"
+      },
+      {
+        "command": "decorated-flutter.res_gen",
+        "title": "Decorated Flutter: Res Gen(生成资源)"
       }
     ]
   },
