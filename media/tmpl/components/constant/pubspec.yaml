@@ -1,0 +1,20 @@
+name: component_constant
+description: A new Flutter project.
+version: 0.0.1
+publish_to: "none"
+
+environment:
+  sdk: "^3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  ######################## 核心框架 ########################
+  decorated_flutter: ^0.47.2
+  ######################## 核心框架 ########################
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.1

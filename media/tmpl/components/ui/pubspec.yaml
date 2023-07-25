@@ -1,0 +1,21 @@
+name: component_ui
+description: A new Flutter project.
+version: 0.0.1
+publish_to: "none"
+
+environment:
+  sdk: "^3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  ################################## 组件 ##################################
+  component_constant:
+    path: ../../components/constant
+  ################################## 组件 ##################################
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: any
