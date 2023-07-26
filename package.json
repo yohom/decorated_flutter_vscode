@@ -2,9 +2,9 @@
   "name": "decorated-flutter-vscode",
   "displayName": "Decorated Flutter VSCode",
   "description": "Decorated Flutter配套的脚手架",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "icon": "media/images/icon.png",
-  "publisher": "decoratedflutter",
+  "publisher": "yohom",
   "repository": {
     "url": "https://github.com/yohom/decorated_flutter_vscode"
   },
