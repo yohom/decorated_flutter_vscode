@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { handleAddLintRule } from './add_lint_rule';
 import { handleFeatGen } from './feat_gen';
 import { handleFeatRemove } from './feat_remove';
 import { handleFeatRename } from './feat_rename';
@@ -19,6 +20,8 @@ export function activate(context: vscode.ExtensionContext) {
 	let featRemove = vscode.commands.registerCommand('decorated-flutter.feat_remove', handleFeatRemove);
 	// 资源生成
 	let resGen = vscode.commands.registerCommand('decorated-flutter.res_gen', handleResGen);
+	// 增加lint规则
+	let addLintRule = vscode.commands.registerCommand('decorated-flutter.add_lint_rule', handleAddLintRule);
 
 	context.subscriptions.push(featGen);
 	context.subscriptions.push(moduleGen);
