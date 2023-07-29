@@ -41,6 +41,10 @@
       {
         "command": "decorated-flutter.project_gen",
         "title": "Decorated Flutter: Project Gen(生成项目)"
+      },
+      {
+        "command": "decorated-flutter.add_lint_rule",
+        "title": "Decorated Flutter: Add Lint Rule(添加lint规则)"
       }
     ]
   },
