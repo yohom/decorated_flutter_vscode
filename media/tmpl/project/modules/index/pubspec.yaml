@@ -1,0 +1,24 @@
+name: module_index
+description: A new Flutter project.
+version: 0.0.1
+publish_to: "none"
+
+environment:
+  sdk: "^3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  ######################### 组件 #########################
+  module_core:
+    path: ../core
+  ######################### 组件 #########################
+
+  ######################### UI #########################
+  ######################### UI #########################
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: any

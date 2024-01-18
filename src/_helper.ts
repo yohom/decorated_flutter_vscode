@@ -29,3 +29,18 @@ export async function formatFile(path: string) {
     await vscode.workspace.applyEdit(workspaceEdit);
   }
 }
+
+/// 插入指定内容到文件
+export async function insertTextInFile(filePath: string, searchText: string, insertText: string) {
+  const document = await vscode.workspace.openTextDocument(filePath);
+  const text = document.getText();
+  const index = text.indexOf(searchText);
+  if (index === -1) {
+    vscode.window.showErrorMessage('未找到指定的文本');
+    return;
+  }
+  const position = document.positionAt(index + searchText.length);
+  const edit = new vscode.WorkspaceEdit();
+  edit.insert(vscode.Uri.file(filePath), position, insertText);
+  await vscode.workspace.applyEdit(edit);
+}

@@ -41,16 +41,16 @@ function _routes(module: string, name: string, desc: string) {
   }
 
   const content = fs.readFileSync(routesFilePath, 'utf8');
-  let injectPosition = content.indexOf('static const String');
+  let injectPosition = content.indexOf('static const');
   if (injectPosition === -1) {
     injectPosition = content.indexOf('Routes._();') + 11 /*`Routes._();`的长度*/;
   }
   const beforePart = content.substring(0, injectPosition);
   const afterPart = content.substring(injectPosition);
 
-  const targetContent = `static const ${name} = '/${module}/${name}'; // ${desc}`;
+  const targetContent = `  static const ${name} = '/${module}/${name}'; // ${desc}`;
 
-  const result = `${beforePart}\n${targetContent}\n${afterPart}`;
+  const result = `${beforePart}\n${targetContent}\n  ${afterPart}`;
 
   fs.writeFileSync(routesFilePath, result);
 }
