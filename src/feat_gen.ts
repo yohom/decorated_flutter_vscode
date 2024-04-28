@@ -64,7 +64,7 @@ function _bloc(module: string, name: string, desc: string) {
     throw 'Cannot create duplicate module';
   }
 
-  const camelFeatureName = name.charAt(0).toUpperCase() + name.slice(1); // Convert the name to CamelCase
+  const camelFeatureName = pascalCase(name);
   const import_ = "import 'package:module_core/module_core.dart';\n\n";
   const class_ =
     `class ${camelFeatureName}BLoC extends LocalBLoC with _ComponentMixin {\n   ${camelFeatureName}BLoC() : super('${desc} BLoC');\n}\n\n`;
@@ -91,7 +91,7 @@ function _screen(module: string, name: string, desc: string) {
 
   fs.mkdirSync(path.dirname(screenFilePath), { recursive: true });
 
-  const camelFeatureName = name.charAt(0).toUpperCase() + name.slice(1); // Convert the name to CamelCase
+  const camelFeatureName = pascalCase(name); // Convert the name to CamelCase
   const pubspecContent = fs.readFileSync(pubspecFilePath, 'utf8');
   const projectName = YAML.parse(pubspecContent)['name'];
 
