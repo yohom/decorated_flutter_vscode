@@ -37,7 +37,7 @@ export async function handleProjectGen() {
   await vscode.workspace.fs.delete(
     vscode.Uri.file(`${workspaceDir()}/test`),
     { recursive: true },
-  )
+  );
 
   await vscode.commands.executeCommand('pub.get');
 }
