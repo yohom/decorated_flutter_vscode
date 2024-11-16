@@ -60,7 +60,7 @@ function _routes(module: string, name: string, desc: string) {
   const beforePart = content.substring(0, injectPosition);
   const afterPart = content.substring(injectPosition);
 
-  const targetContent = `  static const ${name} = '/${module}/${name}'; // ${desc}`;
+  const targetContent = module !== '' ? `  static const ${name} = '/${module}/${name}'; // ${desc}` : `  static const ${name} = '/${name}'; // ${desc}`;
 
   const result = `${beforePart}\n${targetContent}\n  ${afterPart}`;
 
