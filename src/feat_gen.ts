@@ -76,7 +76,10 @@ function _bloc(module: string, name: string, desc: string) {
   }
 
   const camelFeatureName = pascalCase(name);
-  const import_ = "import 'package:module_core/module_core.dart';\n\n";
+  const import_ =
+    module !== ""
+      ? "import 'package:module_core/module_core.dart';\n\n"
+      : `import 'package:decorated_flutter/decorated_flutter.dart';\n\n`;
   const class_ = `class ${camelFeatureName}BLoC extends LocalBLoC with _ComponentMixin {\n   ${camelFeatureName}BLoC() : super('${desc} BLoC');\n}\n\n`;
   const mixin_ =
     "mixin _ComponentMixin on LocalBLoC {\n  @override\n  List<dynamic> get disposeBag => [];\n}";
@@ -112,7 +115,7 @@ function _screen(module: string, name: string, desc: string) {
   const imports =
     module !== ""
       ? `import 'package:module_core/module_core.dart';\nimport 'package:module_${module}/src/bloc/bloc.export.dart';`
-      : "";
+      : `import 'package:decorated_flutter/decorated_flutter.dart';\nimport 'package:flutter/material.dart';\nimport 'package:${projectName}/src/bloc/bloc.export.dart';\nimport 'package:${projectName}/src/resource/r.dart';`;
 
   fs.writeFileSync(
     screenFilePath,
