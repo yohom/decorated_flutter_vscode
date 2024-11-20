@@ -25,7 +25,8 @@ export async function handleFeatRename() {
   }
 
   const workspace = workspaceDir();
-  const modulePath = `${workspace}/modules/${module}`;
+  const modulePath =
+    module !== "" ? `${workspace}/modules/${module}` : `${workspace}`;
 
   // 重命名文件
   const blocFilePath = `${modulePath}/lib/src/bloc/local/${oldName}.bloc.dart`;
@@ -65,7 +66,11 @@ export async function handleFeatRename() {
     oldName,
     newName
   );
-  _replaceForFile(`${modulePath}/lib/src/router.dart`, oldName, newName);
+  if (fs.existsSync(`${modulePath}/lib/src/router.dart`)) {
+    _replaceForFile(`${modulePath}/lib/src/router.dart`, oldName, newName);
+  } else if (fs.existsSync(`${modulePath}/lib/src/app.dart`)) {
+    _replaceForFile(`${modulePath}/lib/src/app.dart`, oldName, newName);
+  }
   _replaceForFile(
     module !== ""
       ? `${workspace}/components/constant/lib/src/resource/constants.dart`
