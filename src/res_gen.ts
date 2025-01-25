@@ -4,7 +4,10 @@ import { workspaceDir } from "./_helper";
 
 export async function handleResGen() {
   const workspace = workspaceDir();
-  const rFile = `${workspace}/components/constant/lib/src/resource/drawables.dart`;
+  let rFile = `${workspace}/components/constant/lib/src/resource/drawables.dart`;
+  if (!fs.existsSync(rFile)) {
+    rFile = `${workspace}/lib/src/resource/drawables.dart`;
+  }
 
   const result = ["part of 'r.dart';\n\n"];
 
@@ -14,7 +17,7 @@ export async function handleResGen() {
 
   const allImages: string[] = [];
   for (const dir of ["assets/images", "assets/fonts"]) {
-    if (dir.startsWith("-")) {
+    if (dir.startsWith("-") || !fs.existsSync(`${workspace}/${dir}`)) {
       continue;
     }
 
